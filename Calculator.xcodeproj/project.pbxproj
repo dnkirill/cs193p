@@ -13,6 +13,7 @@
 		EDB75B4E1AE2BE3F00A6FACA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB75B4D1AE2BE3F00A6FACA /* Images.xcassets */; };
 		EDB75B511AE2BE4000A6FACA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB75B4F1AE2BE4000A6FACA /* LaunchScreen.xib */; };
 		EDB75B5D1AE2BE4000A6FACA /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB75B5C1AE2BE4000A6FACA /* CalculatorTests.swift */; };
+		EDB75B671AECDDC900A6FACA /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB75B661AECDDC900A6FACA /* CalculatorBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		EDB75B561AE2BE4000A6FACA /* CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB75B5B1AE2BE4000A6FACA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDB75B5C1AE2BE4000A6FACA /* CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTests.swift; sourceTree = "<group>"; };
+		EDB75B661AECDDC900A6FACA /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				EDB75B461AE2BE3F00A6FACA /* AppDelegate.swift */,
 				EDB75B481AE2BE3F00A6FACA /* ViewController.swift */,
+				EDB75B661AECDDC900A6FACA /* CalculatorBrain.swift */,
 				EDB75B4A1AE2BE3F00A6FACA /* Main.storyboard */,
 				EDB75B4D1AE2BE3F00A6FACA /* Images.xcassets */,
 				EDB75B4F1AE2BE4000A6FACA /* LaunchScreen.xib */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDB75B671AECDDC900A6FACA /* CalculatorBrain.swift in Sources */,
 				EDB75B491AE2BE3F00A6FACA /* ViewController.swift in Sources */,
 				EDB75B471AE2BE3F00A6FACA /* AppDelegate.swift in Sources */,
 			);

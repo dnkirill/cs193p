@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     var userIsInTheMiddleOfTyping: Bool = false
     
-    var operandStack = [Double]()
+    var brain = CalculatorBrain()
     
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
@@ -40,22 +40,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operate(sender: UIButton) {
-        let operation = sender.currentTitle!
         if userIsInTheMiddleOfTyping  {
             enter()
         }
-        inputHistory.text! += "\(operation) "
-        switch operation {
-        case "×": performOperation { $0 * $1 }
-        case "÷": performOperation { $1 / $0 }
-        case "+": performOperation { $1 + $0 }
-        case "−": performOperation { $1 - $0 }
-        case "√": performOperation { sqrt($0) }
-        case "sin": performOperation { sin($0) }
-        case "cos": performOperation { cos($0) }
-        default: break
+        if let operation = sender.currentTitle {
+            if let result = brain.performOperation(operation) {
+                displayValue = result
+            } else {
+                displayValue = 0
+            }
+            inputHistory.text! += "\(operation) "
         }
-        
     }
     
     @IBAction func getConstant(sender: UIButton) {
@@ -66,24 +61,12 @@ class ViewController: UIViewController {
         }
         enter()
     }
-    private func performOperation(operation: Double -> Double?) {
-        if operandStack.count >= 1 {
-            displayValue = operation(operandStack.removeLast())
-            enter()
-        }
-    }
-    
-    private func performOperation(operation: (Double, Double) -> Double?) {
-        if operandStack.count >= 2 {
-            displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
-            enter()
-        }
-    }
+
     @IBAction func clear() {
-        display.text = "0"
-        userIsInTheMiddleOfTyping = false
-        operandStack = [Double]()
-        inputHistory.text! = ""
+//        display.text = "0"
+//        userIsInTheMiddleOfTyping = false
+//        operandStack = [Double]()
+//        inputHistory.text! = ""
     }
     
     @IBAction func enter() {
@@ -91,16 +74,21 @@ class ViewController: UIViewController {
             inputHistory.text! += "\(displayValue!) "
         }
         userIsInTheMiddleOfTyping = false
-        operandStack.append(displayValue!)
-        println("operandStack = \(operandStack)")
+        if let result = brain.pushOperand(displayValue!) {
+            displayValue = result
+        } else {
+            // IMPROVE THIS
+            displayValue = 0
+        }
     }
     
     var displayValue: Double? {
         get {
             if let number = NSNumberFormatter().numberFromString(display.text!) {
                 return number.doubleValue
+            } else {
+                return 0
             }
-            return 0.0
         }
         set {
             display.text = "\(newValue!)"
