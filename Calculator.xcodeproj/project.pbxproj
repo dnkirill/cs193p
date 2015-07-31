@@ -415,6 +415,7 @@
 				EDB75B621AE2BE4000A6FACA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EDB75B631AE2BE4000A6FACA /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +424,7 @@
 				EDB75B651AE2BE4000A6FACA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

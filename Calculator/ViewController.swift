@@ -29,6 +29,22 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func appendVariable(sender: UIButton) {
+        if userIsInTheMiddleOfTyping { enter() }
+        let result = brain.pushOperand("M")
+        display.text = "M"
+        inputHistory.text = brain.description
+    }
+    
+    @IBAction func setMemoValue() {
+        brain.variableValues["M"] = displayValue
+        userIsInTheMiddleOfTyping = false
+        if let result = brain.evaluate() {
+            displayValue = result
+        }
+    }
+    
+    
     @IBAction func removeDigit() {
         if count(display.text!) > 1 {
             display.text = dropLast(display.text!)
@@ -46,10 +62,10 @@ class ViewController: UIViewController {
         if let operation = sender.currentTitle {
             if let result = brain.performOperation(operation) {
                 displayValue = result
+                inputHistory.text! = brain.description + "="
             } else {
-                displayValue = 0
+                displayValue = nil
             }
-            inputHistory.text! += "\(operation) "
         }
     }
     
@@ -63,22 +79,19 @@ class ViewController: UIViewController {
     }
 
     @IBAction func clear() {
-//        display.text = "0"
-//        userIsInTheMiddleOfTyping = false
-//        operandStack = [Double]()
-//        inputHistory.text! = ""
+        displayValue = nil
+        brain.clearVariables()
+        userIsInTheMiddleOfTyping = false
+        brain.clearStack()
+        inputHistory.text! = ""
     }
     
     @IBAction func enter() {
-        if userIsInTheMiddleOfTyping {
-            inputHistory.text! += "\(displayValue!) "
-        }
         userIsInTheMiddleOfTyping = false
         if let result = brain.pushOperand(displayValue!) {
             displayValue = result
         } else {
-            // IMPROVE THIS
-            displayValue = 0
+            displayValue = nil
         }
     }
     
@@ -86,12 +99,19 @@ class ViewController: UIViewController {
         get {
             if let number = NSNumberFormatter().numberFromString(display.text!) {
                 return number.doubleValue
+            } else if let variable = brain.variableValues[display.text!] {
+                return variable
             } else {
-                return 0
+                return 0.0
             }
         }
         set {
-            display.text = "\(newValue!)"
+            if let value = newValue {
+                display.text = "\(newValue!)"
+            } else {
+                display.text = "0"
+            }
+            inputHistory.text! = brain.description
             userIsInTheMiddleOfTyping = false
         }
     }
