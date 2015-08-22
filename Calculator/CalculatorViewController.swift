@@ -95,6 +95,11 @@ class CalculatorViewController: UIViewController {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let calcVC = segue.destinationViewController as? GraphViewController {
+        }
+    }
+    
     var displayValue: Double? {
         get {
             if let number = NSNumberFormatter().numberFromString(display.text!) {

@@ -363,6 +363,9 @@
                                         <exclude reference="Z5o-aN-l1R"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <segue destination="6f4-iP-D88" kind="showDetail" identifier="plot" id="slM-in-mXB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -552,14 +555,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="426" y="-177"/>
+            <point key="canvasLocation" x="556" y="-215"/>
+        </scene>
+        <!--Graph View Controller-->
+        <scene sceneID="o8g-TQ-6tg">
+            <objects>
+                <viewController id="bgv-CN-zDI" customClass="GraphViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xsy-Gu-dUj"/>
+                        <viewControllerLayoutGuide type="bottom" id="qkh-e0-AJ5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hdg-Nr-Obi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w8t-6T-h94" customClass="GraphView" customModule="Calculator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="w8t-6T-h94" secondAttribute="trailing" id="4yh-7q-4B2"/>
+                            <constraint firstItem="w8t-6T-h94" firstAttribute="bottom" secondItem="qkh-e0-AJ5" secondAttribute="top" id="6it-wL-azX"/>
+                            <constraint firstItem="w8t-6T-h94" firstAttribute="leading" secondItem="hdg-Nr-Obi" secondAttribute="leading" id="70k-s6-Q4s"/>
+                            <constraint firstItem="w8t-6T-h94" firstAttribute="top" secondItem="hdg-Nr-Obi" secondAttribute="top" id="tMp-GX-ZEr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YlW-OR-a59"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vza-vB-5bn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="556" y="619"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Sr9-xS-sU0">
             <objects>
                 <splitViewController id="lPG-JW-CML" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="bBX-B7-9a5" kind="relationship" relationship="masterViewController" id="zCx-Rt-p5U"/>
+                        <segue destination="diV-w3-eGG" kind="relationship" relationship="masterViewController" id="m0r-Pt-eNl"/>
+                        <segue destination="6f4-iP-D88" kind="relationship" relationship="detailViewController" id="u80-lV-d7q"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YIq-Op-Aen" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -567,40 +602,43 @@
             <point key="canvasLocation" x="-1101" y="93"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="46m-sN-bO4">
+        <scene sceneID="mch-Sc-Xgk">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bBX-B7-9a5" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="diV-w3-eGG" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0fL-RT-xIf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wBk-GK-eMa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Pch-H2-t2I"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Bp5-j3-BGm"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WN7-dN-AGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="acr-nZ-VBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-386" y="-177"/>
+            <point key="canvasLocation" x="-256" y="-215"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="oGz-AZ-6ty">
+        <!--Navigation Controller-->
+        <scene sceneID="UhP-4m-P9L">
             <objects>
-                <viewController id="KFL-1l-vl6" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="map-qz-rot"/>
-                        <viewControllerLayoutGuide type="bottom" id="iar-Rz-maP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Paj-xA-AqE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zT8-XD-CGW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6f4-iP-D88" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nrp-lW-F3q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bgv-CN-zDI" kind="relationship" relationship="rootViewController" id="D3R-PM-V2c"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ntj-GC-kgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-373" y="525"/>
+            <point key="canvasLocation" x="-256" y="619"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="slM-in-mXB"/>
+    </inferredMetricsTieBreakers>
 </document>

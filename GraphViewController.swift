@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GraphViewController: UIView {
+class GraphViewController: UIViewController {
 
     
     
