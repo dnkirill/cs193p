@@ -29,7 +29,32 @@ class GraphView: UIView {
     
     override func drawRect(rect: CGRect) {
         origin = origin ?? graphCenter
-        axesDrawer.drawAxesInRect(bounds, origin: graphCenter, pointsPerUnit: scale)
+        axesDrawer.drawAxesInRect(bounds, origin: origin!, pointsPerUnit: scale)
+    }
+    
+    func scale(gesture: UIPinchGestureRecognizer) {
+        if gesture.state == .Changed {
+            scale *= gesture.scale
+            gesture.scale = 1.0
+        }
+    }
+    
+    func moveOrigin(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .Ended: fallthrough
+        case .Changed:
+            let translation = gesture.translationInView(self)
+            origin?.x += translation.x
+            origin?.y += translation.y
+            gesture.setTranslation(CGPointZero, inView: self)
+        default: break
+        }
+    }
+    
+    func setOrigin(gesture: UITapGestureRecognizer) {
+        if gesture.state == .Ended {
+            origin = graphCenter
+        }
     }
     
 }
