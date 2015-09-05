@@ -364,7 +364,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="6f4-iP-D88" kind="showDetail" identifier="plot" id="slM-in-mXB"/>
+                                    <segue destination="6f4-iP-D88" kind="showDetail" identifier="CalculatorViewController.Plot" id="slM-in-mXB"/>
                                 </connections>
                             </button>
                         </subviews>

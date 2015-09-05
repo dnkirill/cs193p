@@ -52,8 +52,9 @@ class CalculatorBrain {
     private var opStack = [Op]()
     
     private var knownOps = [String: Op]()
+    typealias PropertyList = AnyObject
     
-    var program: AnyObject { // Will be a PropertyList
+    var program: PropertyList {
         get {
             return opStack.map { $0.description }
         }
@@ -63,10 +64,14 @@ class CalculatorBrain {
                 for opSymbol in opSymbols {
                     if let op = knownOps[opSymbol] {
                         newOpStack.append(op)
-                    } else if let operand = NSNumberFormatter().numberFromString(opSymbol)?.doubleValue {
+                    } else if opSymbol == "M" {
+                        newOpStack.append(.Variable(opSymbol))
+                    } else if (opSymbol as NSString).doubleValue != 0 {
+                        var operand = (opSymbol as NSString).doubleValue
                         newOpStack.append(.Operand(operand))
                     }
                 }
+                opStack = newOpStack
             }
         }
         
@@ -93,6 +98,10 @@ class CalculatorBrain {
     func clearVariables() {
         variableValues = [String: Double]()
         println("Variables: \(variableValues)")
+    }
+    
+    func setVariable(symbol: String, value: Double) {
+        variableValues[symbol] = value
     }
 
     private func getOpsForDescription(ops: [Op]) -> (result: String?, remainingOps: [Op]) {
@@ -124,8 +133,7 @@ class CalculatorBrain {
     
     func evaluate() -> Double? {
         let (result, remainder) = evaluate(opStack)
-        println(description)
-        //        println("\(opStack) = \(result) with \(remainder) left over")
+//        println("\(opStack) = \(result) with \(remainder) left over")
         return result
     }
 

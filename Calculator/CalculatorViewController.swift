@@ -96,7 +96,19 @@ class CalculatorViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let calcVC = segue.destinationViewController as? GraphViewController {
+        var destination = segue.destinationViewController as? UIViewController
+        if let nc = destination as? UINavigationController {
+            destination = nc.visibleViewController
+        }
+        if let gvc = destination as? GraphViewController {
+            if let identifier = segue.identifier {
+                switch identifier {
+                case "CalculatorViewController.Plot":
+                    gvc.program = brain.program
+//                    gvc.title = brain.description
+                default: break
+                }
+            }
         }
     }
     
