@@ -582,7 +582,15 @@
                             <constraint firstItem="w8t-6T-h94" firstAttribute="top" secondItem="hdg-Nr-Obi" secondAttribute="top" id="tMp-GX-ZEr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YlW-OR-a59"/>
+                    <navigationItem key="navigationItem" id="YlW-OR-a59">
+                        <barButtonItem key="rightBarButtonItem" title="Stats" id="SOb-aF-h0m">
+                            <connections>
+                                <segue destination="flP-HF-vhd" kind="popoverPresentation" identifier="Show Stats" popoverAnchorBarButtonItem="SOb-aF-h0m" id="SgD-kD-Qsm">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="graphView" destination="w8t-6T-h94" id="2ku-LR-vui"/>
                     </connections>
@@ -590,6 +598,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vza-vB-5bn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="556" y="619"/>
+        </scene>
+        <!--Stats View Controller-->
+        <scene sceneID="aWn-bw-Val">
+            <objects>
+                <viewController id="flP-HF-vhd" customClass="StatsViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6yv-XQ-uze"/>
+                        <viewControllerLayoutGuide type="bottom" id="Obs-TQ-UOl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lYw-si-80W">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZl-6O-Dta">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jZl-6O-Dta" firstAttribute="leading" secondItem="lYw-si-80W" secondAttribute="leading" id="70l-8S-eUr"/>
+                            <constraint firstAttribute="trailing" secondItem="jZl-6O-Dta" secondAttribute="trailing" id="8xS-IR-yyz"/>
+                            <constraint firstItem="jZl-6O-Dta" firstAttribute="bottom" secondItem="Obs-TQ-UOl" secondAttribute="top" id="Mr4-nQ-SkS"/>
+                            <constraint firstItem="jZl-6O-Dta" firstAttribute="top" secondItem="lYw-si-80W" secondAttribute="top" id="RfU-SU-pUX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="jZl-6O-Dta" id="Y2z-iu-dBm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="urS-Ua-nSU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="619"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Sr9-xS-sU0">

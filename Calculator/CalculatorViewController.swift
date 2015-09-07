@@ -105,7 +105,7 @@ class CalculatorViewController: UIViewController {
                 switch identifier {
                 case "CalculatorViewController.Plot":
                     gvc.program = brain.program
-//                    gvc.title = brain.description
+                    gvc.title = brain.description
                 default: break
                 }
             }

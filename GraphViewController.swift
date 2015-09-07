@@ -8,8 +8,26 @@
 
 import UIKit
 
-class GraphViewController: UIViewController, GraphViewDataSource {
+class GraphViewController: UIViewController, GraphViewDataSource, UIPopoverPresentationControllerDelegate {
 
+    private struct Stats {
+        static let SegueIdentifier = "Show Stats"
+    }
+    
+    private struct StatsCalculator: Printable {
+        var ymin: Double = 0
+        var ymax: Double = 0
+        
+        mutating func calculate(y: Double) {
+            if ymin > y { ymin =  y }
+            if ymax < y { ymax = y }
+        }
+        
+        var description: String {
+            return "ymin = \(round(ymin))\nymax = \(round(ymax))"
+        }
+    }
+    
     @IBOutlet weak var graphView: GraphView! {
         didSet {
             graphView.dataSource = self
@@ -23,6 +41,8 @@ class GraphViewController: UIViewController, GraphViewDataSource {
     
     private var brain = CalculatorBrain()
     
+    private var statistics = StatsCalculator()
+    
     var program: AnyObject? {
         didSet {
             brain.program = program!
@@ -34,8 +54,28 @@ class GraphViewController: UIViewController, GraphViewDataSource {
     func y(#x: CGFloat) -> CGFloat? {
         brain.setVariable("M", value: Double(x))
         if let y = brain.evaluate() {
+            statistics.calculate(y)
             return CGFloat(y)
         }
         else { return nil }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+                case Stats.SegueIdentifier:
+                    if let svc = segue.destinationViewController as? StatsViewController {
+                        if let ppc = svc.popoverPresentationController {
+                            ppc.delegate = self
+                        }
+                        svc.text = statistics.description
+                }
+            default: break
+            }
+        }
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!, traitCollection: UITraitCollection!) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
     }
 }
