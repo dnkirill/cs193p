@@ -70,9 +70,13 @@ class CalculatorViewController: UIViewController {
     }
     
     @IBAction func getConstant(sender: UIButton) {
+        if userIsInTheMiddleOfTyping {
+            enter()
+        }
         let constant = sender.currentTitle!
         switch constant {
-            case "pi": displayValue = M_PI
+            case "pi": displayValue = brain.constants["PI"]
+            case "e": displayValue = brain.constants["E"]
             default: break
         }
         enter()
@@ -103,7 +107,7 @@ class CalculatorViewController: UIViewController {
         if let gvc = destination as? GraphViewController {
             if let identifier = segue.identifier {
                 switch identifier {
-                case "CalculatorViewController.Plot":
+                case "portrait plot", "landscape plot":
                     gvc.program = brain.program
                     gvc.title = brain.description
                 default: break
@@ -118,13 +122,19 @@ class CalculatorViewController: UIViewController {
                 return number.doubleValue
             } else if let variable = brain.variableValues[display.text!] {
                 return variable
+            } else if let const = brain.constants[display.text!] {
+                return const
             } else {
                 return 0.0
             }
         }
         set {
             if let value = newValue {
-                display.text = "\(newValue!)"
+                switch value {
+                case brain.constants["PI"]!: display.text = "PI"
+                case brain.constants["E"]!: display.text = "E"
+                default: display.text = "\(newValue!)"
+                }
             } else {
                 display.text = "0"
             }

@@ -32,6 +32,9 @@ class CalculatorBrain {
         }
     }
     
+    let constants = ["PI": Double(round(M_PI * 100) / 100),
+                     "E": Double(round(M_E * 100) / 100)]
+    
     var variableValues = [String: Double]()
     
     var description: String {
