@@ -34,7 +34,7 @@ class GraphView: UIView {
     var lineWidth: CGFloat = 2.0 { didSet { setNeedsDisplay() } }
     
     struct GraphQuality {
-        var goodQuality: CGFloat = 5
+        var goodQuality: CGFloat = 1
         var lowQuality: CGFloat = 30
     }
     
@@ -58,24 +58,26 @@ class GraphView: UIView {
         let path = UIBezierPath()
         path.lineWidth = lineWidth
         var firstValue = true
-            for var i = 0; i <= Int(bounds.size.width * 1); i++ {
-                point.x = CGFloat(i) / 1
-            if let y = dataSource?.y(x: (point.x - origin.x) / scale) {
-                if !y.isNormal && !y.isZero {
-                    firstValue = true
-                    continue
-                }
-                point.y = origin.y - y * scale
-                if firstValue {
-                    path.moveToPoint(point)
-                    firstValue = false
+            for var i = 0; i <= Int(bounds.size.width * 2); i++ {
+                point.x = CGFloat(i) / 2
+                let currentX = (point.x - origin.x) / scale
+                let roundedX = CGFloat(round(currentX * 100)/100)
+                if let y = dataSource?.y(x: roundedX){
+                    if !y.isNormal && !y.isZero {
+                        firstValue = true
+                        continue
+                    }
+                    point.y = origin.y - y * scale
+                    if firstValue {
+                        path.moveToPoint(point)
+                        firstValue = false
+                    } else {
+                        path.addLineToPoint(point)
+                        println("Added line: x=\(point.x), y=\(point.y)")
+                    }
                 } else {
-                    path.addLineToPoint(point)
-                    println("Added line: x=\(point.x), y=\(point.y)")
+                    firstValue = true
                 }
-            } else {
-                firstValue = true
-            }
         }
         path.stroke()
     }
